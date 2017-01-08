@@ -4,7 +4,20 @@ import sys
 
 def reach(adj, x, y):
     #write your code here
+    stack = []
+    explored = []
+    stack.append(x)
+    while  stack:
+        vertex = stack.pop()
+        if vertex in explored:
+            continue
+        if y == vertex:
+            return 1
+        explored.append(vertex)
+        for v in adj[vertex]:
+            stack.append(v)
     return 0
+
 
 if __name__ == '__main__':
     input = sys.stdin.read()
