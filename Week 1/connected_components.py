@@ -6,6 +6,23 @@ import sys
 def number_of_components(adj):
     result = 0
     #write your code here
+    stack = []
+    explored = []
+
+    for i in range(len(adj)):
+        if i in explored:
+            continue
+        stack.append(i)
+
+        while stack:
+            top = stack.pop()
+            if top in explored:
+                continue
+            explored.append(top)
+            for node in adj[top]:
+                stack.append(node)
+        result += 1
+
     return result
 
 if __name__ == '__main__':
