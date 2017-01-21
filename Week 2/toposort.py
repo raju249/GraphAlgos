@@ -2,16 +2,23 @@
 
 import sys
 
-def dfs(adj, used, order, x):
-    #write your code here
-    pass
-
+def topsortUtil(adj, vertex, stack, visited):
+    visited.add(vertex)
+    for item in adj[vertex]:
+        if item in visited:
+            continue
+        topsortUtil(adj, item, stack, visited)
+    stack.append(vertex)
 
 def toposort(adj):
-    used = [0] * len(adj)
-    order = []
+    visited = set()
+    stack = []
     #write your code here
-    return order
+    for i in range(len(adj)):
+        if i in visited:
+            continue
+        topsortUtil(adj, i, stack, visited)
+    return reversed(stack)
 
 if __name__ == '__main__':
     input = sys.stdin.read()
