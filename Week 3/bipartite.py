@@ -5,7 +5,19 @@ import queue
 
 def bipartite(adj):
     #write your code here
-    return -1
+    queue = []
+    queue.append(0)
+    color = [-1 for _ in range(len(adj))]
+    color[0] = 1
+    while queue:
+        u = queue.pop(0)
+        for vertex in adj[u]:
+            if color[vertex] == -1:
+                color[vertex] = 1 - color[u]
+                queue.append(vertex)
+            elif color[vertex] == color[u]:
+                return 0
+    return 1
 
 if __name__ == '__main__':
     input = sys.stdin.read()
