@@ -5,7 +5,20 @@ import queue
 
 def distance(adj, s, t):
     #write your code here
-    return -1
+    dist = [-1 for i in range(len(adj))]
+    queue = []
+    dist[s] = 0
+    queue.append(s)
+    while queue:
+        u = queue.pop(0)
+        for vertex in adj[u]:
+            if dist[vertex] == -1:
+                queue.append(vertex)
+                dist[vertex] = dist[u] + 1
+
+            if vertex == t:
+                break
+    return dist[t]
 
 if __name__ == '__main__':
     input = sys.stdin.read()
