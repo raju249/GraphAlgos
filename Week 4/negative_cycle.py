@@ -5,6 +5,17 @@ import sys
 
 def negative_cycle(adj, cost):
     #write your code here
+    distance = [sys.maxsize] * len(adj)
+    adjLen = len(adj)
+    distance[0] = 0
+    for i in range(adjLen):
+        for j in range(adjLen):
+            for vertex in adj[j]:
+                vertex_index = adj[j].index(vertex)
+                if distance[vertex] > distance[j] + cost[j][vertex_index]:
+                    distance[vertex] = distance[j] + cost[j][vertex_index]
+                    if i == adjLen - 1:
+                        return 1
     return 0
 
 
